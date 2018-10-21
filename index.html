@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>The Beer Company</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="beer.css" />
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Beer Localization</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a target="_blank" href="https://www.mahou.es/cervezas/mahou-cinco-estrellas/?gclid=CjwKCAjwgabeBRBuEiwACD4R5v0EDMURG4MCUD8FnfT7BbChuDgE-o3gESjWgkyeFU6eDW03NUg-VxoCjNkQAvD_BwE&gclsrc=aw.ds&dclid=CM3Qkfazkt4CFUKTGwodTUoDTQ">Mahou Site</a></li>
+				<li><a href="https://www.cruzcampo.es/">Cruzcampo Site</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container" id="app">
+		<div id="cabecero">
+			<div>
+				<h1>The Beer Company Brewered</h1>
+			</div>
+			<div>
+				<input id="search" type="text" placeholder="Search" @keyup="filteredList">
+				<label> Your Favorite Beer</label>
+			</div>
+		</div>
+		<div class="grid-container">
+			<div id="contenedor" v-for="beer in Beer">
+				<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+					<div class="flipper">
+						<div class="front">
+							<div>
+								<image id="imagen" :src=beer.image_url></image>
+								<h6>Name:</h6>
+								<p>{{beer.name}}</p>
+								<p>{{beer.tagline}}</p>
+								<p>Vol.Alcohol {{beer.abv}}%</p>
+							</div>
+						</div>
+						<div class="back">
+							<div>
+								<h6>Descripcion</h6>
+								<p>{{beer.description}}</p>
+								<input type="submit" value="+ info" id="login1" data-toggle="modal" data-target="#myModal" @click="modal(beer.name)">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--------------------------------------------- Modal ----------------------------------------------->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h6 class="modal-title">{{titulo}}</h6>
+					</div>
+					<div class="modal-body">
+						<div>
+							<h6>Some recomented food pairing with your beer.</h6>
+							<p>-{{food_pairing}}</p>
+							<p>-{{food_pairing1}}</p>
+							<p>-{{food_pairing2}}</p>
+						</div>
+						<div>
+							<h6>Ingredients:</h6>
+							<p>the principal malt for make this special beer,is:</p>
+							<p id="malta">{{ingredients}}</p>
+						</div>
+						<div>
+							<h6>Contriduted by:</h6>
+							<p>{{contributed_by}}</p>
+						</div>
+						<div>
+							<h6>Brewered from:</h6>
+							<p>{{fecha}}</p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>Powered by Kanh02
+		  <a href="mailto:kaji_ryohji@hotmail.com">
+          <span class="glyphicon glyphicon-question-sign"></span>
+        </a>
+	</footer>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="beer.js"></script>
+	<script src="beer.css"></script>
+</body>
+</html>
