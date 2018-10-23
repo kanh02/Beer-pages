@@ -29,7 +29,7 @@
 			<div>
 				<h1>The Beer Company Brewered</h1>
 			</div>
-			<div>
+			<div id="buscador">
 				<input id="search" type="text" placeholder="Search" @keyup="filteredList">
 				<label> Your Favorite Beer</label>
 			</div>
@@ -39,16 +39,16 @@
 				<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
 					<div class="flipper">
 						<div class="front">
-							<div>
+							<div id="beer">
 								<image id="imagen" :src=beer.image_url></image>
 								<h6>Name:</h6>
-								<p>{{beer.name}}</p>
-								<p>{{beer.tagline}}</p>
+								<p id="name">{{beer.name}}</p>
+								<p id="tag">{{beer.tagline}}</p>
 								<p>Vol.Alcohol {{beer.abv}}%</p>
 							</div>
 						</div>
 						<div class="back">
-							<div>
+							<div id="beer2">
 								<h6>Descripcion</h6>
 								<p>{{beer.description}}</p>
 								<input type="submit" value="+ info" id="login1" data-toggle="modal" data-target="#myModal" @click="modal(beer.name)">
@@ -56,6 +56,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div v-if="Beer.length == 0">
+				<h3>We have a Problem...</h3>
+				<img src="cry.png" id="error">
+				<h3>The bar is Empty!!!</h3>
+
 			</div>
 		</div>
 
@@ -98,7 +104,7 @@
 	</div>
 	<footer>Powered by Kanh02
 		  <a href="mailto:kaji_ryohji@hotmail.com">
-          <span class="glyphicon glyphicon-question-sign"></span>
+          <span class="glyphicon glyphicon-question-sign">Help</span>
         </a>
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
